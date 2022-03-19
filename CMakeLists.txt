@@ -51,6 +51,21 @@ if (SLAM_PARAVIEW_PLUGIN)
   set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
+# If the Paraview plugin needs to be compiled, we must find Paraview before PCL.
+# Otherwise, if PCL is built with pcl_visualization module and uses another VTK
+# than the one provided by Paraview, it may override the correct include
+# directories and libraries.
+option(SLAM_VTK_MODULE "Build a VTK module to wrap SLAM" OFF)
+if (SLAM_VTK_MODULE)
+  # Find VTK
+  include(GNUInstallDirs) #Required
+  find_package(VTK REQUIRED)
+  # As the VTK module is a shared library, we also need to ensure that the core
+  # SLAM lib is compatible with position independent code.
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+endif()
+
+
 find_package(nanoflann REQUIRED)
 
 # Find Eigen3. If it defines the target, this is used. If not,
@@ -106,6 +121,11 @@ add_subdirectory(slam_lib)
 # Build optional ParaView plugin
 if (SLAM_PARAVIEW_PLUGIN)
   add_subdirectory(paraview_wrapping)
+endif()
+
+# Build optional VTK module
+if (SLAM_VTK_MODULE)
+  add_subdirectory(vtk_wrapping)
 endif()
 
 # To build/use ROS wrapping, just put this entire directory in the catkin src
