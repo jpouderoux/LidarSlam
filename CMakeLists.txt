@@ -71,6 +71,11 @@ find_package(nanoflann REQUIRED)
 # Find Eigen3. If it defines the target, this is used. If not,
 # fall back to the using the module form.
 # See https://eigen.tuxfamily.org/dox/TopicCMakeGuide.html for details
+#set(EIGEN_DIR ${CMAKE_INSTALL_PREFIX}/share/eigen3/cmake)
+#set(Eigen_DIR ${CMAKE_INSTALL_PREFIX}/share/eigen3/cmake)
+#set(EIGEN3_DIR ${CMAKE_INSTALL_PREFIX}/share/eigen3/cmake)
+set(Eigen3_DIR ${CMAKE_INSTALL_PREFIX}/share/eigen3/cmake)
+
 find_package(Eigen3 REQUIRED)
 if (TARGET Eigen3::Eigen)
   message(STATUS "Lidar SLAM : using Eigen3::Eigen target (version ${Eigen3_VERSION})")
