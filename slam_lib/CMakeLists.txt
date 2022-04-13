@@ -34,7 +34,9 @@ target_link_libraries(LidarSlam
     ${OpenMP_target}
 )
 
-target_include_directories(LidarSlam PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(LidarSlam PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/LidarSlam)
 
 install(TARGETS LidarSlam
         RUNTIME DESTINATION ${SLAM_INSTALL_LIBRARY_DIR}

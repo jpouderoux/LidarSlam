@@ -25,7 +25,7 @@
 #include <vtkSmartPointer.h>
 
 // LOCAL
-#include <LidarSlam/Slam.h>
+#include <Slam.h>
 
 //! Which keypoints' maps to output
 enum OutputKeypointsMapsMode
