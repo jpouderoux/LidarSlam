@@ -35,3 +35,16 @@ file(WRITE "${CMAKE_BINARY_DIR}/lib/${python_destination}/LidarSlam/__init__.py"
 
 install(FILES "${CMAKE_BINARY_DIR}/lib/${python_destination}/LidarSlam/__init__.py"
         DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/${python_destination}/LidarSlam/")
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/LidarSlamConfig.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/LidarSlamConfig.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LidarSlam
+)
+
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/LidarSlamConfig.cmake"
+  "${CMAKE_INSTALL_PREFIX}/lib/LidarSlamConfigVersion.cmake"
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Lidarslam
+)
