@@ -33,6 +33,8 @@ endif()
 # Boost do not use STATIC libs (Superbuild like), coherent with BUILD_SHARED_LIBS ON
 set(Boost_USE_STATIC_LIBS OFF)
 
+find_package(Boost REQUIRED)
+
 #-------------------------
 #  Find dependencies
 #-------------------------
